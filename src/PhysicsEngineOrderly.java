@@ -70,13 +70,15 @@ public class PhysicsEngineOrderly extends PhysicsEngine
           // This calculation gives a 'stiff spring' affect
           //float toMove = ((float)Math.sqrt(MIN_DISTANCE_SQR) - delta.length()) / 10.0f;
 
+          // away from each other
           // This calculation gives a much nicer flow
-          float toMove = 0.03f;
+          float toMove = 0.84f;
           delta.scale((1 / delta.length()) * toMove);
 
           n.mPosition.sub(delta);
           pNode.mPosition.add(delta);
         } else {
+          // towards each other
           float toMove = -0.003f;
           delta.scale((1 / delta.length()) * toMove);
 
@@ -116,6 +118,8 @@ public class PhysicsEngineOrderly extends PhysicsEngine
       float distance = delta.length();
       delta.scale(1 / delta.length() * -0.01f * distance);
       file.mPosition.add(delta);
+      delta.scale(-0.1f);
+      pNode.mPosition.add(delta);
     }
   }
 
